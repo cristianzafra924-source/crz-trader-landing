@@ -245,6 +245,33 @@ h3 {
   pointer-events: none;
 }
 
+.portrait-signature {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 28px;
+  z-index: 1;
+  display: grid;
+  gap: 4px;
+  padding: 16px 18px;
+  border: 1px solid rgba(64, 210, 196, 0.28);
+  border-radius: 18px;
+  background: rgba(3, 6, 6, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.portrait-signature strong {
+  color: var(--ink);
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+
+.portrait-signature span {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
 .mentor-photo {
   width: 100%;
   max-height: min(72vh, 720px);
@@ -421,6 +448,11 @@ h3 {
   .mentor-photo {
     height: auto;
     min-height: 0;
+  }
+
+  .portrait-signature {
+    position: static;
+    margin-top: 10px;
   }
 
   .footer {
