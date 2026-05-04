@@ -408,6 +408,11 @@ h3 {
   font-size: 0.92rem;
 }
 
+.form-note a {
+  color: var(--turquoise);
+  font-weight: 800;
+}
+
 .footer {
   justify-content: space-between;
   gap: 20px;
