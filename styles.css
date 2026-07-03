@@ -476,6 +476,19 @@ h3 {
   letter-spacing: 0.04em;
 }
 
+.analysis-video {
+  background: #000;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.analysis-video video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  background: #000;
+  object-fit: contain;
+}
+
 .mini-media {
   min-height: 150px;
 }
