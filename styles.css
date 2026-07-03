@@ -458,7 +458,7 @@ h3 {
   text-transform: uppercase;
 }
 
-.market-tile {
+.market-chips > span {
   display: inline-flex;
   min-width: 112px;
   min-height: 96px;
@@ -478,7 +478,7 @@ h3 {
     0 12px 26px rgba(0, 0, 0, 0.18);
 }
 
-.market-tile b {
+.market-chips > span b {
   width: 48px;
   height: 48px;
   display: inline-flex;
@@ -495,7 +495,7 @@ h3 {
     0 12px 28px rgba(64, 210, 196, 0.22);
 }
 
-.market-tile small {
+.market-chips > span small {
   color: var(--ink);
   font-size: 0.94rem;
   font-weight: 900;
