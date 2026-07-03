@@ -219,7 +219,7 @@ a {
   display: block;
   object-fit: cover;
   object-position: center;
-  filter: saturate(1.08) contrast(1.04) brightness(0.9);
+  filter: saturate(1.12) contrast(1.06) brightness(1);
 }
 
 .analysis-panel p {
