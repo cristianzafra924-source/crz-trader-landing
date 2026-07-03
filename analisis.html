@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=market-visual-2">
+  <link rel="stylesheet" href="styles.css?v=market-groups-1">
 </head>
 <body>
   <header class="topbar">
@@ -69,23 +69,45 @@
       </div>
 
       <div class="market-context" aria-label="Contexto de mercados analizados">
-        <div class="market-chips">
-          <strong>Mercados en seguimiento</strong>
-          <span class="market-tile market-nasdaq"><b>NQ</b><small>NASDAQ</small></span>
-          <span class="market-tile market-sp"><b>SP</b><small>S&amp;P 500</small></span>
-          <span class="market-tile market-aapl"><b>AA</b><small>AAPL</small></span>
-          <span class="market-tile market-nvda"><b>NV</b><small>NVDA</small></span>
-          <span class="market-tile market-btc"><b>₿</b><small>BTC</small></span>
-          <span class="market-tile market-vix"><b>VX</b><small>VIX</small></span>
+        <div class="market-header">
+          <div>
+            <strong>Mercados en seguimiento</strong>
+            <p>Índices, materias primas y acciones que suelen marcar el pulso del mercado.</p>
+          </div>
+          <div class="candle-panel" aria-hidden="true">
+            <span class="candle candle-down"></span>
+            <span class="candle candle-up"></span>
+            <span class="candle candle-up tall"></span>
+            <span class="candle candle-down short"></span>
+            <span class="candle candle-up"></span>
+            <span class="candle candle-down tall"></span>
+            <span class="candle candle-up short"></span>
+          </div>
         </div>
-        <div class="candle-panel" aria-hidden="true">
-          <span class="candle candle-down"></span>
-          <span class="candle candle-up"></span>
-          <span class="candle candle-up tall"></span>
-          <span class="candle candle-down short"></span>
-          <span class="candle candle-up"></span>
-          <span class="candle candle-down tall"></span>
-          <span class="candle candle-up short"></span>
+
+        <div class="market-groups">
+          <div class="market-group">
+            <span class="market-label">Índices</span>
+            <div class="market-chips">
+              <span class="market-tile market-nasdaq"><b>NQ</b><small>NASDAQ</small></span>
+              <span class="market-tile market-sp"><b>SP</b><small>S&amp;P 500</small></span>
+              <span class="market-tile market-vix"><b>VX</b><small>VIX</small></span>
+            </div>
+          </div>
+          <div class="market-group">
+            <span class="market-label">Materias primas</span>
+            <div class="market-chips">
+              <span class="market-tile market-gold"><b>AU</b><small>Oro</small></span>
+              <span class="market-tile market-oil"><b>WT</b><small>Petróleo</small></span>
+            </div>
+          </div>
+          <div class="market-group">
+            <span class="market-label">Acciones</span>
+            <div class="market-chips">
+              <span class="market-tile market-aapl"><b>AA</b><small>AAPL</small></span>
+              <span class="market-tile market-nvda"><b>NV</b><small>NVDA</small></span>
+            </div>
+          </div>
         </div>
       </div>
 

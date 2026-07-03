@@ -421,14 +421,9 @@ h3 {
 
 .market-context {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
-  gap: 18px;
-  align-items: stretch;
+  gap: 22px;
   margin: -8px 0 28px;
-}
-
-.market-chips,
-.candle-panel {
+  padding: 24px;
   border: 1px solid var(--line-soft);
   border-radius: var(--radius);
   background:
@@ -440,17 +435,15 @@ h3 {
     0 0 34px rgba(64, 210, 196, 0.06);
 }
 
-.market-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-content: center;
+.market-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 0.38fr);
+  gap: 20px;
   align-items: center;
-  padding: 24px;
 }
 
-.market-chips strong {
-  width: 100%;
+.market-header strong {
+  display: block;
   color: var(--turquoise);
   font-size: 0.92rem;
   font-weight: 900;
@@ -458,10 +451,45 @@ h3 {
   text-transform: uppercase;
 }
 
+.market-header p {
+  max-width: 680px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 1.12rem;
+  line-height: 1.62;
+}
+
+.market-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.market-group {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid rgba(64, 210, 196, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.032);
+}
+
+.market-label {
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.market-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .market-chips > span {
   display: inline-flex;
-  min-width: 112px;
-  min-height: 96px;
+  min-width: 104px;
+  min-height: 92px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -522,6 +550,14 @@ h3 {
   background: #f7b64a;
 }
 
+.market-gold b {
+  background: #f5c85b;
+}
+
+.market-oil b {
+  background: #4ed19b;
+}
+
 .market-vix b {
   background: #ff6f7f;
 }
@@ -535,6 +571,11 @@ h3 {
   gap: 16px;
   overflow: hidden;
   padding: 18px;
+  border: 1px solid rgba(64, 210, 196, 0.16);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(64, 210, 196, 0.12), rgba(255, 255, 255, 0.035)),
+    rgba(255, 255, 255, 0.032);
 }
 
 .candle-panel::before,
@@ -881,7 +922,8 @@ h3 {
   .hero,
   .analysis-hero,
   .cards,
-  .market-context,
+  .market-header,
+  .market-groups,
   .analysis-grid,
   .outcome,
   .contact {
