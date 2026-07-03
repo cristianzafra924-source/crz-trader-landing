@@ -536,6 +536,48 @@ h3 {
   color: var(--turquoise);
 }
 
+.analysis-feedback {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.analysis-feedback span {
+  color: var(--muted);
+  font-size: 1.02rem;
+  font-weight: 800;
+}
+
+.feedback-button {
+  min-height: 42px;
+  border: 1px solid rgba(64, 210, 196, 0.34);
+  border-radius: 999px;
+  padding: 10px 16px;
+  color: #031010;
+  background: linear-gradient(135deg, #72f3e8, var(--turquoise) 48%, var(--turquoise-dark));
+  font-size: 0.98rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease;
+}
+
+.feedback-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(64, 210, 196, 0.2);
+}
+
+.feedback-button.is-selected,
+.feedback-button:disabled {
+  cursor: default;
+  opacity: 0.78;
+  transform: none;
+}
+
 .text-cta {
   color: var(--turquoise);
   font-weight: 800;
