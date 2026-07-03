@@ -475,7 +475,7 @@ h3 {
 
 .market-groups {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -553,6 +553,10 @@ h3 {
 
 .market-gold .market-emblem {
   background: #f5c85b;
+}
+
+.market-btc .market-emblem {
+  background: #f7b64a;
 }
 
 .candle-panel {
