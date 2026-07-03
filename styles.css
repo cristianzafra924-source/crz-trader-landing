@@ -191,6 +191,8 @@ a {
 }
 
 .analysis-panel {
+  position: relative;
+  overflow: hidden;
   display: grid;
   gap: 16px;
   padding: 30px;
@@ -203,6 +205,46 @@ a {
     inset 0 1px 0 rgba(255, 255, 255, 0.075),
     0 18px 42px rgba(0, 0, 0, 0.22),
     0 0 36px rgba(64, 210, 196, 0.07);
+}
+
+.analysis-panel > :not(.hero-market-visual) {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-market-visual {
+  position: absolute;
+  inset: auto 18px 18px auto;
+  width: min(82%, 380px);
+  min-height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+.hero-market-visual::before,
+.hero-market-visual::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.11);
+}
+
+.hero-market-visual::before {
+  top: 35%;
+}
+
+.hero-market-visual::after {
+  bottom: 32%;
+}
+
+.hero-market-visual .candle {
+  width: 14px;
+  transform: scale(1.12);
 }
 
 .analysis-panel p {
@@ -436,10 +478,7 @@ h3 {
 }
 
 .market-header {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 0.38fr);
-  gap: 20px;
-  align-items: center;
+  max-width: 760px;
 }
 
 .market-header strong {
@@ -557,39 +596,6 @@ h3 {
 
 .market-btc .market-emblem {
   background: #f7b64a;
-}
-
-.candle-panel {
-  position: relative;
-  min-height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  overflow: hidden;
-  padding: 18px;
-  border: 1px solid rgba(64, 210, 196, 0.16);
-  border-radius: 18px;
-  background:
-    linear-gradient(145deg, rgba(64, 210, 196, 0.12), rgba(255, 255, 255, 0.035)),
-    rgba(255, 255, 255, 0.032);
-}
-
-.candle-panel::before,
-.candle-panel::after {
-  content: "";
-  position: absolute;
-  left: 18px;
-  right: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.055);
-}
-
-.candle-panel::before {
-  top: 34%;
-}
-
-.candle-panel::after {
-  bottom: 32%;
 }
 
 .candle {
