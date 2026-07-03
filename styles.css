@@ -208,21 +208,34 @@ a {
 }
 
 .analysis-image-panel {
-  min-height: auto;
-  max-width: 540px;
+  min-height: min(70vh, 680px);
+  max-width: 620px;
+  width: 100%;
   justify-self: end;
-  padding: 12px;
-  background: #020606;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  opacity: 0.72;
 }
 
 .analysis-image-panel img {
   width: 100%;
-  max-height: min(70vh, 680px);
+  height: 100%;
   display: block;
-  object-fit: contain;
-  object-position: center;
-  filter: saturate(1.12) contrast(1.06) brightness(1);
-  border-radius: 16px;
+  object-fit: cover;
+  object-position: center right;
+  filter: saturate(1.08) contrast(1.05) brightness(0.82);
+  border-radius: 0;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 24%, #000 78%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 24%, #000 78%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .analysis-panel p {
