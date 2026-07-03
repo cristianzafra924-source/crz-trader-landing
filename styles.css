@@ -182,9 +182,9 @@ a {
 }
 
 .analysis-hero {
-  min-height: calc(78vh - 78px);
+  min-height: calc(74vh - 78px);
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.72fr);
+  grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.54fr);
   gap: clamp(28px, 5vw, 74px);
   align-items: center;
   padding: clamp(46px, 7vw, 96px) clamp(18px, 6vw, 84px) 54px;
@@ -208,18 +208,21 @@ a {
 }
 
 .analysis-image-panel {
-  min-height: min(68vh, 620px);
-  padding: 0;
+  min-height: auto;
+  max-width: 460px;
+  justify-self: end;
+  padding: 12px;
   background: #020606;
 }
 
 .analysis-image-panel img {
   width: 100%;
-  height: 100%;
+  max-height: min(54vh, 500px);
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   filter: saturate(1.12) contrast(1.06) brightness(1);
+  border-radius: 16px;
 }
 
 .analysis-panel p {
