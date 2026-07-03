@@ -184,7 +184,7 @@ a {
 .analysis-hero {
   min-height: calc(74vh - 78px);
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.54fr);
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.7fr);
   gap: clamp(28px, 5vw, 74px);
   align-items: center;
   padding: clamp(46px, 7vw, 96px) clamp(18px, 6vw, 84px) 54px;
@@ -209,7 +209,7 @@ a {
 
 .analysis-image-panel {
   min-height: auto;
-  max-width: 430px;
+  max-width: 540px;
   justify-self: end;
   padding: 12px;
   background: #020606;
@@ -217,7 +217,7 @@ a {
 
 .analysis-image-panel img {
   width: 100%;
-  max-height: min(52vh, 480px);
+  max-height: min(70vh, 680px);
   display: block;
   object-fit: contain;
   object-position: center;
