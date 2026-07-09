@@ -233,17 +233,17 @@ a {
 
 .analysis-hero h1 {
   max-width: 780px;
-  font-family: "Fraunces", Georgia, serif;
+  font-family: "Sora", "Manrope", Arial, sans-serif;
   font-size: clamp(2.55rem, 5.2vw, 5rem);
-  font-weight: 700;
-  line-height: 0.96;
+  font-weight: 800;
+  line-height: 1.02;
   overflow-wrap: anywhere;
 }
 
 .split .section-head h2,
 .analysis-content h3 {
-  font-family: "Fraunces", Georgia, serif;
-  font-weight: 700;
+  font-family: "Sora", "Manrope", Arial, sans-serif;
+  font-weight: 800;
 }
 
 .analysis-hero .eyebrow,
