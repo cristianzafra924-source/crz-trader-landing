@@ -203,10 +203,12 @@ a {
   position: absolute;
   inset: 0;
   background:
-    url("assets/heatmap-dashboard-crz.png") right center / min(64vw, 960px) auto no-repeat;
-  opacity: 0.76;
-  filter: saturate(1.18) contrast(1.12) brightness(0.92);
-  transform: scale(1.04);
+    url("assets/heatmap-dashboard-crz.png") right center / min(56vw, 820px) auto no-repeat;
+  opacity: 0.82;
+  filter: saturate(1.22) contrast(1.14) brightness(0.98);
+  transform: translate3d(0, 0, 0) scale(1.02);
+  transform-origin: 82% 48%;
+  animation: heroPanelDrift 16s ease-in-out infinite;
 }
 
 .analysis-hero::after {
@@ -231,8 +233,25 @@ a {
 
 .analysis-hero h1 {
   max-width: 780px;
+  font-family: "Fraunces", Georgia, serif;
   font-size: clamp(2.55rem, 5.2vw, 5rem);
+  font-weight: 700;
+  line-height: 0.96;
   overflow-wrap: anywhere;
+}
+
+.split .section-head h2,
+.analysis-content h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 700;
+}
+
+.analysis-hero .eyebrow,
+.analysis-hero .hero-text,
+.analysis-hero .button,
+.market-context,
+.analysis-card {
+  font-family: "Manrope", Arial, sans-serif;
 }
 
 .analysis-panel p {
@@ -1035,6 +1054,17 @@ h3 {
   }
 }
 
+@keyframes heroPanelDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.02) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(-14px, -8px, 0) scale(1.045) rotate(-0.7deg);
+  }
+}
+
 @keyframes logoPulse {
   0%,
   100% {
@@ -1076,6 +1106,7 @@ h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .analysis-hero::before,
   .market-symbol,
   .market-symbol b,
   .market-symbol b::before,
