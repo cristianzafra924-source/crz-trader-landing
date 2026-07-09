@@ -188,12 +188,36 @@ a {
 }
 
 .hero {
+  position: relative;
   min-height: calc(100vh - 78px);
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.82fr);
   gap: clamp(28px, 5vw, 74px);
   align-items: center;
+  overflow: hidden;
   padding: clamp(46px, 7vw, 96px) clamp(18px, 6vw, 84px) 54px;
+}
+
+.hero-brand-mark {
+  position: absolute;
+  top: clamp(72px, 13vh, 150px);
+  left: clamp(26px, 7vw, 142px);
+  z-index: 0;
+  width: clamp(150px, 14vw, 250px);
+  height: auto;
+  pointer-events: none;
+  opacity: 0.32;
+  filter:
+    drop-shadow(0 0 28px rgba(64, 210, 196, 0.34))
+    drop-shadow(0 20px 52px rgba(0, 0, 0, 0.36));
+  transform-origin: center;
+  animation: heroMarkOrbit 18s ease-in-out infinite;
+}
+
+.hero > :not(.hero-brand-mark),
+.analysis-hero > :not(.hero-brand-mark) {
+  position: relative;
+  z-index: 1;
 }
 
 .analysis-hero {
@@ -234,7 +258,7 @@ a {
     radial-gradient(circle at 77% 34%, rgba(64, 210, 196, 0.26), transparent 42%);
 }
 
-.analysis-hero > * {
+.analysis-hero > :not(.hero-brand-mark) {
   position: relative;
   z-index: 1;
 }
@@ -1093,6 +1117,21 @@ h3 {
   }
 }
 
+@keyframes heroMarkOrbit {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  38% {
+    transform: translate3d(12px, -10px, 0) rotate(5deg) scale(1.045);
+  }
+
+  72% {
+    transform: translate3d(-8px, 8px, 0) rotate(-4deg) scale(0.985);
+  }
+}
+
 @keyframes logoPulse {
   0%,
   100% {
@@ -1135,6 +1174,7 @@ h3 {
 
 @media (prefers-reduced-motion: reduce) {
   .brand img,
+  .hero-brand-mark,
   .analysis-hero::before,
   .market-symbol,
   .market-symbol b,
@@ -1188,6 +1228,13 @@ h3 {
   .analysis-hero {
     min-height: 0;
     padding-top: 72px;
+  }
+
+  .hero-brand-mark {
+    top: 92px;
+    left: 18px;
+    width: min(42vw, 170px);
+    opacity: 0.18;
   }
 
   .analysis-hero::before {
