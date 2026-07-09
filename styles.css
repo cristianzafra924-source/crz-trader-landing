@@ -182,60 +182,44 @@ a {
 }
 
 .analysis-hero {
-  min-height: calc(74vh - 78px);
+  position: relative;
+  min-height: calc(82vh - 78px);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.7fr);
-  gap: clamp(28px, 5vw, 74px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
   align-items: center;
+  overflow: hidden;
   padding: clamp(46px, 7vw, 96px) clamp(18px, 6vw, 84px) 54px;
 }
 
-.analysis-panel {
-  position: relative;
-  overflow: hidden;
-  display: grid;
-  gap: 16px;
-  padding: 30px;
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius);
+.analysis-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background:
-    linear-gradient(145deg, rgba(64, 210, 196, 0.13), rgba(255, 255, 255, 0.035) 48%, rgba(64, 210, 196, 0.055)),
-    var(--panel);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.075),
-    0 18px 42px rgba(0, 0, 0, 0.22),
-    0 0 36px rgba(64, 210, 196, 0.07);
+    url("assets/heatmap-dashboard-crz.png") right center / min(62vw, 900px) auto no-repeat;
+  opacity: 0.56;
+  filter: saturate(1.05) contrast(1.05) brightness(0.72);
+  transform: scale(1.04);
 }
 
-.analysis-image-panel {
-  min-height: min(70vh, 680px);
-  max-width: 620px;
-  width: 100%;
-  justify-self: end;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  opacity: 0.72;
+.analysis-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--bg) 0%, rgba(3, 6, 6, 0.98) 34%, rgba(3, 6, 6, 0.78) 55%, rgba(3, 6, 6, 0.48) 100%),
+    linear-gradient(180deg, rgba(3, 6, 6, 0.1), rgba(3, 6, 6, 0.88)),
+    radial-gradient(circle at 75% 34%, rgba(64, 210, 196, 0.18), transparent 38%);
 }
 
-.analysis-image-panel img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center right;
-  filter: saturate(1.08) contrast(1.05) brightness(0.82);
-  border-radius: 0;
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, #000 24%, #000 78%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to right, transparent 0%, #000 24%, #000 78%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
-  mask-composite: intersect;
+.analysis-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.analysis-hero > div {
+  max-width: 920px;
 }
 
 .analysis-panel p {
@@ -952,6 +936,23 @@ h3 {
 
   .hero {
     min-height: 0;
+  }
+
+  .analysis-hero {
+    min-height: 0;
+    padding-top: 72px;
+  }
+
+  .analysis-hero::before {
+    background-position: center bottom;
+    background-size: min(96vw, 620px) auto;
+    opacity: 0.24;
+  }
+
+  .analysis-hero::after {
+    background:
+      linear-gradient(180deg, var(--bg) 0%, rgba(3, 6, 6, 0.94) 48%, rgba(3, 6, 6, 0.82) 100%),
+      radial-gradient(circle at 50% 70%, rgba(64, 210, 196, 0.14), transparent 42%);
   }
 }
 
