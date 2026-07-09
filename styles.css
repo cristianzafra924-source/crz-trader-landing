@@ -75,10 +75,10 @@ a {
 }
 
 .brand img {
-  width: 58px;
-  height: 58px;
-  border-radius: 18px;
-  object-fit: cover;
+  width: 66px;
+  height: 66px;
+  border-radius: 22px;
+  object-fit: contain;
   border: 1px solid var(--line);
   box-shadow:
     0 0 0 5px rgba(64, 210, 196, 0.08),
@@ -1162,8 +1162,8 @@ h3 {
   }
 
   .brand img {
-    width: 52px;
-    height: 52px;
+    width: 58px;
+    height: 58px;
   }
 
   .hero,
