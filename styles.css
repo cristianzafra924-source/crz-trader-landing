@@ -549,15 +549,16 @@ h3 {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-height: 42px;
-  padding: 7px 12px 7px 7px;
+  gap: 12px;
+  min-height: 58px;
+  padding: 8px 14px 8px 8px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   color: var(--ink);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025)),
-    rgba(0, 0, 0, 0.22);
+    radial-gradient(circle at 24px 50%, rgba(64, 210, 196, 0.12), transparent 34px),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.018)),
+    rgba(0, 0, 0, 0.24);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 0 22px rgba(64, 210, 196, 0.08);
@@ -567,34 +568,61 @@ h3 {
 
 .market-symbol b {
   position: relative;
-  width: 34px;
-  height: 34px;
+  width: 48px;
+  height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  flex: 0 0 48px;
   border-radius: 999px;
-  color: #ffffff;
-  background: #0586c7;
-  font-size: 0.82rem;
+  color: var(--asset-color, var(--turquoise));
+  background: #071010;
+  font-size: 0.78rem;
   font-weight: 900;
   line-height: 1;
+  text-shadow: 0 0 12px color-mix(in srgb, var(--asset-color, var(--turquoise)) 72%, transparent);
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.15),
-    0 0 20px rgba(64, 210, 196, 0.24);
+    inset 0 0 0 10px rgba(255, 255, 255, 0.018),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 22px color-mix(in srgb, var(--asset-color, var(--turquoise)) 34%, transparent);
   animation: logoPulse 4.8s ease-in-out infinite;
+}
+
+.market-symbol b::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      var(--asset-color, var(--turquoise)) 0deg 8deg,
+      transparent 8deg 15deg
+    );
+  -webkit-mask: radial-gradient(circle, transparent 0 58%, #000 59%);
+  mask: radial-gradient(circle, transparent 0 58%, #000 59%);
+  animation: orbitSpin 18s linear infinite;
+  pointer-events: none;
 }
 
 .market-symbol b::after {
   content: "";
   position: absolute;
-  inset: -45%;
-  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.42), transparent 62%);
-  transform: translateX(-70%) rotate(18deg);
-  animation: logoSweep 5.8s ease-in-out infinite;
+  inset: 10px;
+  border: 1px solid color-mix(in srgb, var(--asset-color, var(--turquoise)) 46%, transparent);
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--asset-color, var(--turquoise)) 12%, transparent), transparent 58%),
+    #071010;
+  pointer-events: none;
 }
 
-.market-symbol span {
+.market-symbol b span {
+  position: relative;
+  z-index: 1;
+}
+
+.market-symbol > span {
   color: var(--ink);
   font-size: 1.1rem;
   font-weight: 900;
@@ -626,23 +654,19 @@ h3 {
 }
 
 .market-nasdaq .market-symbol b {
-  background: #42d8ff;
-  color: #031010;
+  --asset-color: #42d8ff;
 }
 
 .market-nvda .market-symbol b {
-  background: #8ee65f;
-  color: #031010;
+  --asset-color: #8ee65f;
 }
 
 .market-gold .market-symbol b {
-  background: #f5c85b;
-  color: #031010;
+  --asset-color: #f5c85b;
 }
 
 .market-btc .market-symbol b {
-  background: #f7b64a;
-  color: #031010;
+  --asset-color: #7c35ff;
 }
 
 .market-nasdaq .market-symbol {
@@ -1019,6 +1043,12 @@ h3 {
   }
 }
 
+@keyframes orbitSpin {
+  to {
+    rotate: 360deg;
+  }
+}
+
 @keyframes statusBlink {
   0%,
   100% {
@@ -1033,6 +1063,7 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   .market-symbol,
   .market-symbol b,
+  .market-symbol b::before,
   .market-symbol b::after,
   .market-symbol i {
     animation: none;
