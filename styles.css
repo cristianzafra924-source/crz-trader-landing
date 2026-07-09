@@ -75,9 +75,9 @@ a {
 }
 
 .brand img {
-  width: 66px;
-  height: 66px;
-  border-radius: 22px;
+  width: 84px;
+  height: 54px;
+  border-radius: 16px;
   object-fit: contain;
   border: 1px solid var(--line);
   box-shadow:
@@ -1162,8 +1162,8 @@ h3 {
   }
 
   .brand img {
-    width: 58px;
-    height: 58px;
+    width: 76px;
+    height: 50px;
   }
 
   .hero,
