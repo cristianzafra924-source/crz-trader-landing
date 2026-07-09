@@ -75,12 +75,25 @@ a {
 }
 
 .brand img {
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
   object-fit: cover;
   border: 1px solid var(--line);
-  box-shadow: 0 0 0 5px rgba(64, 210, 196, 0.07);
+  box-shadow:
+    0 0 0 5px rgba(64, 210, 196, 0.08),
+    0 14px 34px rgba(64, 210, 196, 0.12);
+  transform-origin: center;
+  animation: brandLogoDrift 8s ease-in-out infinite;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.brand:hover img {
+  box-shadow:
+    0 0 0 6px rgba(64, 210, 196, 0.12),
+    0 18px 42px rgba(64, 210, 196, 0.22);
 }
 
 .nav {
@@ -1065,6 +1078,21 @@ h3 {
   }
 }
 
+@keyframes brandLogoDrift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+
+  35% {
+    transform: translateY(-2px) rotate(-1.2deg) scale(1.035);
+  }
+
+  70% {
+    transform: translateY(1px) rotate(1deg) scale(1.015);
+  }
+}
+
 @keyframes logoPulse {
   0%,
   100% {
@@ -1106,6 +1134,7 @@ h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .brand img,
   .analysis-hero::before,
   .market-symbol,
   .market-symbol b,
@@ -1130,6 +1159,11 @@ h3 {
 
   .nav-cta {
     display: none;
+  }
+
+  .brand img {
+    width: 52px;
+    height: 52px;
   }
 
   .hero,
