@@ -200,22 +200,22 @@ a {
 
 .analysis-logo-orbit {
   position: absolute;
-  top: 116px;
-  left: 72px;
-  z-index: 0;
+  top: 92px;
+  left: 92px;
+  z-index: 2;
   display: grid;
-  width: 126px;
-  height: 126px;
+  width: 156px;
+  height: 156px;
   place-items: center;
   pointer-events: none;
   border-radius: 50%;
-  opacity: 0.92;
+  opacity: 1;
   background:
     radial-gradient(circle at 50% 50%, rgba(7, 16, 15, 0.96) 0 43%, rgba(19, 79, 38, 0.34) 44% 56%, transparent 58%),
     radial-gradient(circle, rgba(116, 238, 79, 0.22), transparent 64%);
   filter:
-    drop-shadow(0 0 18px rgba(121, 255, 72, 0.28))
-    drop-shadow(0 18px 42px rgba(0, 0, 0, 0.46));
+    drop-shadow(0 0 24px rgba(121, 255, 72, 0.36))
+    drop-shadow(0 20px 48px rgba(0, 0, 0, 0.5));
   transform-origin: center;
   animation: analysisLogoFloat 7s ease-in-out infinite;
 }
@@ -258,7 +258,7 @@ a {
 .hero > *,
 .analysis-hero > :not(.analysis-logo-orbit) {
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 .analysis-hero {
@@ -301,7 +301,7 @@ a {
 
 .analysis-hero > :not(.analysis-logo-orbit) {
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 .analysis-hero > div:not(.analysis-logo-orbit) {
@@ -1290,9 +1290,9 @@ h3 {
   .analysis-logo-orbit {
     top: 96px;
     left: 18px;
-    width: 96px;
-    height: 96px;
-    opacity: 0.34;
+    width: 106px;
+    height: 106px;
+    opacity: 0.7;
   }
 
   .analysis-hero::before {
