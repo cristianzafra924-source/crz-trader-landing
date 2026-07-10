@@ -106,7 +106,7 @@ const setupFeedbackTracking = () => {
       const videoTitle = card?.dataset.videoTitle || button.textContent.trim();
 
       button.classList.add("is-selected");
-      button.textContent = "Gracias, registrado";
+      button.textContent = "Valoración guardada";
       button.disabled = true;
 
       sendCrzEvent("analysis_like", {
