@@ -200,12 +200,12 @@ a {
 
 .analysis-logo-orbit {
   position: absolute;
-  top: 92px;
+  top: 18px;
   left: 92px;
   z-index: 2;
   display: grid;
-  width: 156px;
-  height: 156px;
+  width: 132px;
+  height: 132px;
   place-items: center;
   pointer-events: none;
   border-radius: 50%;
@@ -1288,11 +1288,11 @@ h3 {
   }
 
   .analysis-logo-orbit {
-    top: 96px;
+    top: 22px;
     left: 18px;
-    width: 106px;
-    height: 106px;
-    opacity: 0.7;
+    width: 92px;
+    height: 92px;
+    opacity: 0.58;
   }
 
   .analysis-hero::before {
