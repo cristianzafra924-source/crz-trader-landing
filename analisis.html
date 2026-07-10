@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Nunito+Sans:wght@700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=analysis-videos-hidden-1">
+  <link rel="stylesheet" href="styles.css?v=analysis-nasdaq-previous-1">
 </head>
 <body>
   <header class="topbar">
@@ -59,6 +59,58 @@
         <p>
           Los próximos análisis se publicarán aquí, con el vídeo más reciente como principal y los anteriores en una lista lateral.
         </p>
+      </div>
+
+      <div class="video-library">
+        <article class="analysis-card video-stage">
+          <div class="analysis-content">
+            <p class="eyebrow">Principal</p>
+            <h3>Próximo análisis destacado</h3>
+            <p>
+              El análisis más reciente aparecerá aquí como vídeo principal. Los anteriores quedarán guardados en la lista lateral.
+            </p>
+          </div>
+        </article>
+
+        <aside class="previous-videos" aria-label="Vídeos anteriores">
+          <div class="previous-head">
+            <p class="eyebrow">Historial</p>
+            <h3>Vídeos anteriores</h3>
+          </div>
+
+          <article class="analysis-card previous-video-card" data-video-id="analisis-nasdaq-2026-06-15" data-video-title="Análisis Nasdaq">
+            <div class="previous-video-media">
+              <video controls preload="metadata" data-video-id="analisis-nasdaq-2026-06-15" data-video-title="Análisis Nasdaq">
+                <source src="assets/videos/analisis-nasdaq-2026-06-15.mp4" type="video/mp4">
+                Tu navegador no puede reproducir este vídeo.
+              </video>
+            </div>
+            <div class="analysis-content">
+              <div class="analysis-meta">
+                <span>Grabación</span>
+                <span>Nasdaq</span>
+              </div>
+              <h3>Análisis Nasdaq</h3>
+              <p>Seguimiento de mercado para revisar contexto, niveles y posibles escenarios.</p>
+              <div class="feedback-pill" aria-label="Valorar el análisis">
+                <button class="feedback-icon-button" type="button" data-feedback="like" data-video-id="analisis-nasdaq-2026-06-15" aria-label="Me ha servido">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
+                    <path d="M7 11l4-8a3 3 0 0 1 3 3v4h5.2a2 2 0 0 1 2 2.3l-1.1 7a2 2 0 0 1-2 1.7H7z" />
+                  </svg>
+                </button>
+                <span class="feedback-count" data-count="0">0</span>
+                <span class="feedback-divider" aria-hidden="true"></span>
+                <button class="feedback-icon-button" type="button" data-feedback="dislike" data-video-id="analisis-nasdaq-2026-06-15" aria-label="No me ha servido">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M17 2h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3" />
+                    <path d="M17 13l-4 8a3 3 0 0 1-3-3v-4H4.8a2 2 0 0 1-2-2.3l1.1-7a2 2 0 0 1 2-1.7H17z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        </aside>
       </div>
 
       <div class="market-context" aria-label="Contexto de mercados analizados">
@@ -101,6 +153,6 @@
     <p>CRZ Trader - Análisis de mercado.</p>
     <p>Contenido educativo. El trading implica riesgo.</p>
   </footer>
-  <script src="script.js?v=analysis-videos-hidden-1"></script>
+  <script src="script.js?v=analysis-nasdaq-previous-1"></script>
 </body>
 </html>

@@ -826,6 +826,75 @@ h3 {
   gap: 18px;
 }
 
+.video-library {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(330px, 0.78fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.video-stage {
+  min-height: 360px;
+  display: grid;
+  align-items: end;
+  background:
+    radial-gradient(circle at 70% 10%, rgba(64, 210, 196, 0.18), transparent 34%),
+    linear-gradient(145deg, rgba(64, 210, 196, 0.08), rgba(255, 255, 255, 0.03) 48%, rgba(64, 210, 196, 0.05)),
+    #050b0b;
+}
+
+.video-stage .analysis-content {
+  max-width: 620px;
+}
+
+.previous-videos {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.previous-head {
+  padding: 4px 2px 0;
+}
+
+.previous-head h3 {
+  margin-top: 4px;
+}
+
+.previous-video-card {
+  display: grid;
+}
+
+.previous-video-media {
+  background: #000;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.previous-video-media video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  background: #000;
+  object-fit: contain;
+}
+
+.previous-video-card .analysis-content {
+  padding: 20px;
+}
+
+.previous-video-card .analysis-content h3 {
+  font-size: clamp(1.22rem, 1.6vw, 1.55rem);
+}
+
+.previous-video-card .analysis-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.previous-video-card .feedback-pill {
+  justify-self: start;
+}
+
 .analysis-card {
   overflow: hidden;
   border: 1px solid var(--line-soft);
@@ -1277,6 +1346,7 @@ h3 {
   .market-header,
   .market-groups,
   .analysis-grid,
+  .video-library,
   .outcome,
   .contact {
     grid-template-columns: 1fr;
