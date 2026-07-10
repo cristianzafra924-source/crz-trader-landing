@@ -304,7 +304,7 @@ a {
   z-index: 1;
 }
 
-.analysis-hero > div {
+.analysis-hero > div:not(.analysis-logo-orbit) {
   width: min(100%, 840px);
   max-width: 840px;
 }
