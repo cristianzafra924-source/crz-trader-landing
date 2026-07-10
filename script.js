@@ -104,10 +104,15 @@ const setupFeedbackTracking = () => {
       const card = button.closest("[data-video-id]");
       const videoId = button.dataset.videoId || card?.dataset.videoId || "video-sin-id";
       const videoTitle = card?.dataset.videoTitle || button.textContent.trim();
+      const group = button.closest(".feedback-pill") || button.closest(".analysis-feedback");
+
+      group?.querySelectorAll("[data-feedback]").forEach((item) => {
+        item.classList.remove("is-selected");
+        item.removeAttribute("aria-pressed");
+      });
 
       button.classList.add("is-selected");
-      button.textContent = "Valoración guardada";
-      button.disabled = true;
+      button.setAttribute("aria-pressed", "true");
 
       sendCrzEvent("analysis_like", {
         videoId,
