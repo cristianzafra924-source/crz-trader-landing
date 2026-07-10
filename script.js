@@ -105,6 +105,10 @@ const setupFeedbackTracking = () => {
       const videoId = button.dataset.videoId || card?.dataset.videoId || "video-sin-id";
       const videoTitle = card?.dataset.videoTitle || button.textContent.trim();
       const group = button.closest(".feedback-pill") || button.closest(".analysis-feedback");
+      const selected = group?.querySelector("[data-feedback].is-selected");
+      const previousFeedback = selected?.dataset.feedback;
+      const nextFeedback = button.dataset.feedback;
+      const count = group?.querySelector(".feedback-count");
 
       group?.querySelectorAll("[data-feedback]").forEach((item) => {
         item.classList.remove("is-selected");
@@ -113,6 +117,25 @@ const setupFeedbackTracking = () => {
 
       button.classList.add("is-selected");
       button.setAttribute("aria-pressed", "true");
+
+      if (count) {
+        const currentCount = Number.parseInt(count.dataset.count || "0", 10) || 0;
+        let nextCount = currentCount;
+
+        if (nextFeedback === "like" && previousFeedback !== "like") {
+          nextCount += 1;
+        }
+
+        if (nextFeedback === "dislike" && previousFeedback === "like") {
+          nextCount = Math.max(0, nextCount - 1);
+        }
+
+        count.dataset.count = String(nextCount);
+        count.textContent = new Intl.NumberFormat("es-ES", {
+          notation: nextCount >= 1000 ? "compact" : "standard",
+          maximumFractionDigits: 1,
+        }).format(nextCount);
+      }
 
       sendCrzEvent("analysis_like", {
         videoId,
