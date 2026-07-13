@@ -233,10 +233,10 @@ a {
   position: absolute;
   inset: 0;
   background:
-    url("assets/heatmap-dashboard-crz.png") right center / min(56vw, 820px) auto no-repeat;
-  opacity: 0.82;
-  filter: saturate(1.22) contrast(1.14) brightness(0.98);
-  transform: translate3d(0, 0, 0) scale(1.02);
+    url("assets/analysis-chart-heatmap-crz.png") right center / min(62vw, 980px) auto no-repeat;
+  opacity: 0.9;
+  filter: saturate(1.12) contrast(1.08) brightness(0.96);
+  transform: translate3d(0, 0, 0) scale(1.01);
   transform-origin: 82% 48%;
   animation: heroPanelDrift 16s ease-in-out infinite;
 }
