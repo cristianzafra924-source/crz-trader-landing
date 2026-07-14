@@ -233,10 +233,11 @@ a {
   position: absolute;
   inset: 0;
   background:
-    url("assets/analysis-chart-heatmap-crz.png") right center / min(62vw, 980px) auto no-repeat;
-  opacity: 0.9;
-  filter: saturate(1.12) contrast(1.08) brightness(0.96);
-  transform: translate3d(0, 0, 0) scale(1.01);
+    radial-gradient(circle at 76% 28%, rgba(64, 210, 196, 0.18), transparent 34%),
+    radial-gradient(circle at 88% 72%, rgba(64, 210, 196, 0.09), transparent 36%);
+  opacity: 1;
+  filter: none;
+  transform: translate3d(0, 0, 0);
   transform-origin: 82% 48%;
   animation: heroPanelDrift 16s ease-in-out infinite;
 }
@@ -246,7 +247,7 @@ a {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, var(--bg) 0%, rgba(3, 6, 6, 0.97) 30%, rgba(3, 6, 6, 0.64) 53%, rgba(3, 6, 6, 0.18) 100%),
+    linear-gradient(90deg, var(--bg) 0%, rgba(3, 6, 6, 0.97) 38%, rgba(3, 6, 6, 0.82) 70%, rgba(3, 6, 6, 0.58) 100%),
     linear-gradient(180deg, rgba(3, 6, 6, 0.04), rgba(3, 6, 6, 0.72)),
     radial-gradient(circle at 77% 34%, rgba(64, 210, 196, 0.26), transparent 42%);
 }
