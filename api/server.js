@@ -45,7 +45,15 @@ app.use(express.text({ type: "text/plain", limit: "64kb" }));
 
 const parseBody = (body) => {
   if (typeof body === "string") {
-    return JSON.parse(body);
+    if (!body.trim()) {
+      return {};
+    }
+
+    try {
+      return JSON.parse(body);
+    } catch (_error) {
+      return { raw: body };
+    }
   }
 
   return body || {};
@@ -191,6 +199,13 @@ app.get("/", (_req, res) => {
 
 app.post("/events", async (req, res) => {
   try {
+    console.log("Evento recibido", {
+      contentType: req.headers["content-type"],
+      bodyType: typeof req.body,
+      hasDatabaseUrl: Boolean(DATABASE_URL),
+      dbReady,
+    });
+
     if (!pool) {
       res.status(503).json({ ok: false, error: "DATABASE_URL no configurado" });
       return;
@@ -236,6 +251,45 @@ app.post("/events", async (req, res) => {
   } catch (error) {
     console.error("Error guardando evento", error);
     res.status(500).json({ ok: false, error: error.message || "No se pudo guardar el evento" });
+  }
+});
+
+app.get("/debug/db", async (req, res) => {
+  const token = req.query.token || "";
+
+  if (!ADMIN_TOKEN || token !== ADMIN_TOKEN) {
+    res.status(401).json({ ok: false, error: "No autorizado" });
+    return;
+  }
+
+  try {
+    if (!pool) {
+      res.status(503).json({ ok: false, error: "DATABASE_URL no configurado" });
+      return;
+    }
+
+    const result = await pool.query("select current_database() as database, current_user as user, now() as now");
+    res.json({
+      ok: true,
+      dbReady,
+      dbError,
+      databaseUrlPresent: Boolean(DATABASE_URL),
+      databaseUrlHost: (() => {
+        try {
+          return new URL(DATABASE_URL).host;
+        } catch (_error) {
+          return "DATABASE_URL no parseable";
+        }
+      })(),
+      result: result.rows[0],
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      dbReady,
+      dbError,
+      error: error.message || "Error comprobando Postgres",
+    });
   }
 });
 
