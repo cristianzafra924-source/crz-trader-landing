@@ -69,7 +69,7 @@ const normalizeEvent = (raw) => ({
   details: raw,
 });
 
-const initDb = async () => {
+const runDbSetup = async () => {
   if (!pool) {
     return;
   }
@@ -93,13 +93,33 @@ const initDb = async () => {
       duration integer,
       details jsonb not null default '{}'::jsonb,
       created_at timestamptz not null default now()
-    );
-
-    create index if not exists analytics_events_event_idx on analytics_events(event);
-    create index if not exists analytics_events_video_idx on analytics_events(video_id);
-    create index if not exists analytics_events_created_idx on analytics_events(created_at desc);
-    create index if not exists analytics_events_visitor_idx on analytics_events(visitor_id);
+    )
   `);
+
+  await pool.query("create index if not exists analytics_events_event_idx on analytics_events(event)");
+  await pool.query("create index if not exists analytics_events_video_idx on analytics_events(video_id)");
+  await pool.query("create index if not exists analytics_events_created_idx on analytics_events(created_at desc)");
+  await pool.query("create index if not exists analytics_events_visitor_idx on analytics_events(visitor_id)");
+};
+
+const initDb = async () => {
+  await runDbSetup();
+  dbReady = Boolean(pool);
+  dbError = "";
+};
+
+const ensureDbReady = async () => {
+  if (dbReady) {
+    return;
+  }
+
+  try {
+    await initDb();
+  } catch (error) {
+    dbReady = false;
+    dbError = error.message || "Error conectando con Postgres";
+    console.error("No se pudo preparar la base de datos", error);
+  }
 };
 
 app.get("/health", (_req, res) => {
@@ -176,6 +196,13 @@ app.post("/events", async (req, res) => {
       return;
     }
 
+    await ensureDbReady();
+
+    if (!dbReady) {
+      res.status(500).json({ ok: false, error: dbError || "Base de datos no preparada" });
+      return;
+    }
+
     const event = normalizeEvent(parseBody(req.body));
 
     await pool.query(
@@ -208,8 +235,25 @@ app.post("/events", async (req, res) => {
     res.status(204).end();
   } catch (error) {
     console.error("Error guardando evento", error);
-    res.status(400).json({ ok: false, error: "Evento no valido" });
+    res.status(500).json({ ok: false, error: error.message || "No se pudo guardar el evento" });
   }
+});
+
+app.get("/admin/init", async (req, res) => {
+  const token = req.query.token || "";
+
+  if (!ADMIN_TOKEN || token !== ADMIN_TOKEN) {
+    res.status(401).json({ ok: false, error: "No autorizado" });
+    return;
+  }
+
+  await ensureDbReady();
+
+  res.json({
+    ok: dbReady,
+    db: dbReady,
+    dbError,
+  });
 });
 
 app.get("/stats/videos/:videoId", async (req, res) => {
@@ -247,7 +291,6 @@ app.get("/stats/videos/:videoId", async (req, res) => {
 
 try {
   await initDb();
-  dbReady = Boolean(pool);
 } catch (error) {
   dbReady = false;
   dbError = error.message || "Error conectando con Postgres";
