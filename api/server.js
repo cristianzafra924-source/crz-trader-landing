@@ -111,6 +111,64 @@ app.get("/health", (_req, res) => {
   });
 });
 
+app.get("/", (_req, res) => {
+  res.type("html").send(`
+    <!doctype html>
+    <html lang="es">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CRZ Analytics API</title>
+        <style>
+          body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: #050b12;
+            color: #eef7fb;
+            font-family: Arial, sans-serif;
+          }
+          main {
+            width: min(680px, calc(100vw - 32px));
+            padding: 34px;
+            border: 1px solid rgba(64, 210, 196, 0.35);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.035);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+          }
+          span {
+            color: #40d2c4;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+          }
+          h1 {
+            margin: 12px 0;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+          }
+          p {
+            color: #a8bdcc;
+            line-height: 1.6;
+          }
+          code {
+            color: #40d2c4;
+          }
+        </style>
+      </head>
+      <body>
+        <main>
+          <span>Online</span>
+          <h1>CRZ Analytics API</h1>
+          <p>El servicio esta activo. Usa <code>/health</code> para comprobar la base de datos y <code>/events</code> para recibir eventos de la landing.</p>
+          <p>DB: <strong>${dbReady ? "conectada" : "pendiente"}</strong>${dbError ? ` · ${dbError}` : ""}</p>
+        </main>
+      </body>
+    </html>
+  `);
+});
+
 app.post("/events", async (req, res) => {
   try {
     if (!pool) {
