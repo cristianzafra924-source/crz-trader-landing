@@ -1,4 +1,5 @@
-const CRZ_ANALYTICS_ENDPOINT = window.CRZ_ANALYTICS_ENDPOINT || "";
+const CRZ_ANALYTICS_ENDPOINT =
+  window.CRZ_ANALYTICS_ENDPOINT || "https://crz-analytics-api-production.up.railway.app/events";
 
 const getVisitorId = () => {
   const key = "crz_visitor_id";
