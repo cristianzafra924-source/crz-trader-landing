@@ -1450,6 +1450,32 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .video-library.single-video {
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+
+  .single-video .video-stage {
+    order: 1;
+  }
+
+  .single-video .previous-videos {
+    order: 2;
+  }
+
+  .single-video .video-stage .analysis-content {
+    padding: 18px;
+  }
+
+  .previous-videos-empty {
+    min-height: auto;
+  }
+
+  .previous-empty-card {
+    min-height: 150px;
+    padding: 18px;
+  }
+
   .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1480,6 +1506,54 @@ h3 {
   .hero-actions,
   .button {
     width: 100%;
+  }
+
+  .video-library.single-video {
+    gap: 14px;
+  }
+
+  .featured-video-media video {
+    aspect-ratio: 16 / 9;
+    max-height: 58vh;
+  }
+
+  .featured-video-copy h3 {
+    font-size: 1.25rem;
+  }
+
+  .featured-video-copy p {
+    font-size: 0.95rem;
+  }
+
+  .previous-head {
+    padding: 0;
+  }
+
+  .previous-head h3 {
+    font-size: 1.05rem;
+  }
+
+  .previous-head p:not(.eyebrow),
+  .previous-empty-card p {
+    font-size: 0.9rem;
+  }
+
+  .previous-empty-card {
+    min-height: 120px;
+    grid-template-columns: auto 1fr;
+    place-items: center start;
+    text-align: left;
+  }
+
+  .previous-empty-card p {
+    grid-column: 2;
+  }
+
+  .previous-empty-icon {
+    width: 42px;
+    height: 42px;
+    grid-row: span 2;
+    border-radius: 13px;
   }
 
   .hero-metrics div {
