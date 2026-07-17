@@ -11,6 +11,8 @@ const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "https://crztrader.com,h
   .map((origin) => origin.trim())
   .filter(Boolean);
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || "";
+let dbReady = false;
+let dbError = "";
 
 if (!DATABASE_URL) {
   console.warn("DATABASE_URL no configurado. La API arrancara, pero no podra guardar eventos.");
@@ -19,7 +21,7 @@ if (!DATABASE_URL) {
 const pool = DATABASE_URL
   ? new Pool({
       connectionString: DATABASE_URL,
-      ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
+      ssl: DATABASE_URL.includes("sslmode=require") ? { rejectUnauthorized: false } : false,
     })
   : null;
 
@@ -103,7 +105,8 @@ const initDb = async () => {
 app.get("/health", (_req, res) => {
   res.json({
     ok: true,
-    db: Boolean(pool),
+    db: dbReady,
+    dbError,
     service: "crz-analytics-api",
   });
 });
@@ -184,7 +187,14 @@ app.get("/stats/videos/:videoId", async (req, res) => {
   });
 });
 
-await initDb();
+try {
+  await initDb();
+  dbReady = Boolean(pool);
+} catch (error) {
+  dbReady = false;
+  dbError = error.message || "Error conectando con Postgres";
+  console.error("No se pudo inicializar la base de datos", error);
+}
 
 app.listen(PORT, () => {
   console.log(`CRZ Analytics API escuchando en puerto ${PORT}`);
