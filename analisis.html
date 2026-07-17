@@ -57,43 +57,25 @@
         <p class="eyebrow">Biblioteca</p>
         <h2>Análisis recientes</h2>
         <p>
-          Los próximos análisis se publicarán aquí, con el vídeo más reciente como principal y los anteriores en una lista lateral.
+          El analisis destacado se publicara aqui como referencia principal. Los siguientes videos se iran incorporando progresivamente.
         </p>
       </div>
 
-      <div class="video-library">
+      <div class="video-library single-video">
         <article class="analysis-card video-stage">
+          <div class="featured-video-media">
+            <video controls preload="metadata" poster="assets/poster-analisis-nasdaq-definitivo-2026-07-17.png?v=logo-cover-2" data-video-id="analisis-nasdaq-definitivo-2026-07-17" data-video-title="Analisis Nasdaq">
+              <source src="assets/videos/analisis-nasdaq-definitivo-2026-07-17-web.mp4" type="video/mp4">
+              Tu navegador no puede reproducir este video.
+            </video>
+          </div>
           <div class="analysis-content">
-            <p class="eyebrow">Principal</p>
-            <h3>Próximo análisis destacado</h3>
-            <p>
-              El análisis más reciente aparecerá aquí como vídeo principal. Los anteriores quedarán guardados en la lista lateral.
-            </p>
-          </div>
-        </article>
-
-        <aside class="previous-videos" aria-label="Vídeos anteriores">
-          <div class="previous-head">
-            <p class="eyebrow">Historial</p>
-            <h3>Vídeos anteriores</h3>
-          </div>
-
-          <article class="analysis-card previous-video-card" data-video-id="analisis-nasdaq-2026-06-15" data-video-title="Análisis Nasdaq">
-            <div class="previous-video-media">
-              <video controls preload="metadata" poster="assets/poster-analisis-nasdaq-crz.png" data-video-id="analisis-nasdaq-2026-06-15" data-video-title="Análisis Nasdaq">
-                <source src="assets/videos/analisis-nasdaq-2026-06-15.mp4" type="video/mp4">
-                Tu navegador no puede reproducir este vídeo.
-              </video>
-            </div>
-            <div class="analysis-content">
-              <div class="analysis-meta">
-                <span>Grabación</span>
-                <span>Nasdaq</span>
-              </div>
-              <h3>Análisis Nasdaq</h3>
-              <p>Seguimiento de mercado para revisar contexto, niveles y posibles escenarios.</p>
-              <div class="feedback-pill" aria-label="Valorar el análisis">
-                <button class="feedback-icon-button" type="button" data-feedback="like" data-video-id="analisis-nasdaq-2026-06-15" aria-label="Me ha servido">
+            <div class="featured-video-copy">
+              <p class="eyebrow">Principal</p>
+              <h3>Analisis Nasdaq</h3>
+              <p>Primer analisis destacado para revisar contexto, niveles importantes y posibles escenarios del Nasdaq.</p>
+              <div class="feedback-pill" aria-label="Valorar el analisis">
+                <button class="feedback-icon-button" type="button" data-feedback="like" data-video-id="analisis-nasdaq-definitivo-2026-07-17" aria-label="Me ha servido">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
                     <path d="M7 11l4-8a3 3 0 0 1 3 3v4h5.2a2 2 0 0 1 2 2.3l-1.1 7a2 2 0 0 1-2 1.7H7z" />
@@ -101,7 +83,7 @@
                 </button>
                 <span class="feedback-count" data-count="0">0</span>
                 <span class="feedback-divider" aria-hidden="true"></span>
-                <button class="feedback-icon-button" type="button" data-feedback="dislike" data-video-id="analisis-nasdaq-2026-06-15" aria-label="No me ha servido">
+                <button class="feedback-icon-button" type="button" data-feedback="dislike" data-video-id="analisis-nasdaq-definitivo-2026-07-17" aria-label="No me ha servido">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M17 2h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3" />
                     <path d="M17 13l-4 8a3 3 0 0 1-3-3v-4H4.8a2 2 0 0 1-2-2.3l1.1-7a2 2 0 0 1 2-1.7H17z" />
@@ -109,7 +91,24 @@
                 </button>
               </div>
             </div>
-          </article>
+          </div>
+        </article>
+        <aside class="previous-videos previous-videos-empty" aria-label="Publicaciones anteriores">
+          <div class="previous-head">
+            <p class="eyebrow">Historial</p>
+            <h3>Publicaciones anteriores</h3>
+            <p>Los proximos analisis publicados quedaran ordenados aqui para que puedas volver a revisarlos.</p>
+          </div>
+          <div class="previous-empty-card">
+            <span class="previous-empty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z" />
+                <path d="M9 8l6 4-6 4z" />
+              </svg>
+            </span>
+            <strong>Aun no hay videos anteriores</strong>
+            <p>Cuando se publique el siguiente analisis, este apartado mostrara la biblioteca completa.</p>
+          </div>
         </aside>
       </div>
 

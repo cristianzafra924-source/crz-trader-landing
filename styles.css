@@ -834,6 +834,12 @@ h3 {
   align-items: stretch;
 }
 
+.video-library.single-video {
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.62fr);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
 .video-stage {
   min-height: 360px;
   display: grid;
@@ -844,8 +850,48 @@ h3 {
     #050b0b;
 }
 
+.single-video .video-stage {
+  align-items: stretch;
+  background:
+    radial-gradient(circle at 72% 0%, rgba(64, 210, 196, 0.12), transparent 34%),
+    linear-gradient(145deg, rgba(64, 210, 196, 0.06), rgba(255, 255, 255, 0.025)),
+    #050b0b;
+}
+
+.featured-video-media {
+  background: #000;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.featured-video-media video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  background: #000;
+  object-fit: contain;
+}
+
 .video-stage .analysis-content {
   max-width: 620px;
+}
+
+.single-video .video-stage .analysis-content {
+  max-width: none;
+  padding: 24px;
+}
+
+.single-video .video-stage .analysis-content > .eyebrow,
+.single-video .video-stage .analysis-content > h3,
+.single-video .video-stage .analysis-content > p {
+  display: none;
+}
+
+.featured-video-copy {
+  max-width: 760px;
+}
+
+.featured-video-copy p {
+  color: var(--muted);
 }
 
 .previous-videos {
@@ -854,12 +900,63 @@ h3 {
   align-content: start;
 }
 
+.previous-videos-empty {
+  min-height: 100%;
+}
+
 .previous-head {
   padding: 4px 2px 0;
 }
 
 .previous-head h3 {
   margin-top: 4px;
+}
+
+.previous-head p:not(.eyebrow) {
+  color: var(--muted);
+}
+
+.previous-empty-card {
+  min-height: 320px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  padding: 28px;
+  text-align: center;
+  border: 1px dashed rgba(64, 210, 196, 0.26);
+  border-radius: var(--radius-card);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(64, 210, 196, 0.10), transparent 42%),
+    rgba(255, 255, 255, 0.025);
+  color: var(--text);
+}
+
+.previous-empty-card p {
+  max-width: 280px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.previous-empty-icon {
+  width: 52px;
+  height: 52px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 16px;
+  color: var(--accent);
+  background: rgba(64, 210, 196, 0.10);
+  box-shadow: inset 0 0 0 1px rgba(64, 210, 196, 0.18);
+}
+
+.previous-empty-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .previous-video-card {
