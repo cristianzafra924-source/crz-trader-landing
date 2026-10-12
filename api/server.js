@@ -97,7 +97,7 @@ const runDbSetup = async () => {
       video_title text,
       feedback text,
       progress integer,
-      current_time integer,
+      playback_time integer,
       duration integer,
       details jsonb not null default '{}'::jsonb,
       created_at timestamptz not null default now()
@@ -224,7 +224,7 @@ app.post("/events", async (req, res) => {
       `
         insert into analytics_events (
           event, visitor_id, page, url, referrer, user_agent, language, screen,
-          video_id, video_title, feedback, progress, current_time, duration, details
+          video_id, video_title, feedback, progress, playback_time, duration, details
         )
         values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
       `,
