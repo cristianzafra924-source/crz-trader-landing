@@ -50,7 +50,7 @@ const sendCrzEvent = (eventName, details = {}) => {
 
 const getVideoPayload = (video) => ({
   videoId: video.dataset.videoId || "video-sin-id",
-  videoTitle: video.dataset.videoTitle || "Video sin titulo",
+  videoTitle: video.dataset.videoTitle || "Vídeo sin título",
   currentTime: Math.round(video.currentTime || 0),
   duration: Math.round(video.duration || 0),
 });
