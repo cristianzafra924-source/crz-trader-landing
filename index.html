@@ -17,163 +17,442 @@
   <meta name="twitter:image" content="https://crztrader.com/assets/cara-crz.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Nunito+Sans:wght@700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=fuentes-movil-2026-11-18">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f5f3;
+      --card: #ffffff;
+      --ink: #121615;
+      --muted: #59625f;
+      --line: #e3e6e3;
+      --brand: #40d2c4;
+      --brand-ink: #0c7d73;
+      --deep: #0d2f2c;
+      --deep-2: #134440;
+      --radius: 28px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Figtree", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .wrap { width: min(1200px, 100% - 32px); margin: 0 auto; }
+
+    /* Barra superior */
+    .top {
+      position: sticky; top: 12px; z-index: 20;
+      width: min(1200px, 100% - 32px); margin: 12px auto 0;
+      display: flex; align-items: center; gap: 28px;
+      padding: 10px 10px 10px 18px;
+      background: rgba(13, 47, 44, 0.96);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(13, 47, 44, 0.18);
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-sym { height: 38px; width: auto; }
+    .logo-word { display: grid; font-family: "Montserrat", sans-serif; line-height: 1; }
+    .logo-word b { font-weight: 600; font-size: 1.32rem; letter-spacing: 0.01em; }
+    .logo-word small { margin-top: 3px; font-weight: 500; font-size: 0.56rem; letter-spacing: 0.52em; color: var(--brand-ink); }
+    .logo.light .logo-word b { color: #fff; }
+    .logo.light .logo-word small { color: var(--brand); }
+    .top nav { display: flex; gap: 22px; color: rgba(255, 255, 255, 0.72); font-weight: 500; font-size: 0.98rem; }
+    .top nav a:hover { color: #fff; }
+    .top .spacer { flex: 1; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 46px; padding: 0 22px; border-radius: 999px;
+      font: inherit; font-weight: 700; font-size: 0.98rem; cursor: pointer; border: 1px solid transparent;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-dark { background: var(--ink); color: #fff; }
+    .btn-brand { background: var(--brand); color: #04211e; }
+    .btn-white { background: #fff; color: var(--ink); }
+    .btn-line { border-color: rgba(255, 255, 255, 0.45); color: #fff; }
+
+    /* Portada */
+    .hero {
+      width: min(1200px, 100% - 32px); margin: 18px auto 0;
+      position: relative; overflow: hidden;
+      display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: end;
+      background: var(--deep);
+      border-radius: var(--radius);
+      color: #fff;
+      min-height: 560px;
+    }
+    .hero::before {
+      content: ""; position: absolute; right: -120px; top: -160px; width: 520px; height: 520px;
+      border-radius: 50%; background: var(--deep-2);
+    }
+    .hero-text { position: relative; padding: 64px 56px 56px; align-self: center; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 0.88rem; font-weight: 600;
+    }
+    .chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); }
+    .hero h1 {
+      margin: 22px 0 18px; font-size: clamp(2.4rem, 4.6vw, 3.9rem); line-height: 1.04;
+      font-weight: 700; letter-spacing: -0.025em;
+    }
+    .hero h1 em { font-style: normal; color: var(--brand); }
+    .hero p { margin: 0; max-width: 520px; font-size: 1.1rem; color: rgba(255, 255, 255, 0.78); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .hero-photo { position: relative; align-self: end; justify-self: center; width: min(390px, 92%); }
+    .hero-photo img {
+      width: 100%; aspect-ratio: 407 / 515; object-fit: cover;
+      border-radius: 200px 200px 0 0;
+      -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent);
+              mask-image: linear-gradient(180deg, #000 78%, transparent);
+    }
+    .hero-tag {
+      position: absolute; left: -36px; bottom: 64px;
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px; border-radius: 18px;
+      background: #fff; color: var(--ink); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    }
+    .hero-tag b { display: block; font-size: 0.98rem; line-height: 1.2; }
+    .hero-tag small { color: var(--muted); font-size: 0.85rem; }
+    .hero-tag { border-left: 4px solid var(--brand); padding-left: 16px; }
+    .hero-tag b { font-size: 1.05rem; }
+
+    /* Cifras */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px auto 0; }
+    .stat { padding: 22px 24px; background: var(--card); border: 1px solid var(--line); border-radius: 22px; }
+    .stat b { display: block; font-size: 2rem; line-height: 1.1; letter-spacing: -0.02em; }
+    .stat span { color: var(--muted); font-size: 0.95rem; }
+
+    /* Secciones */
+    section { padding: 96px 0 0; scroll-margin-top: 70px; }
+    .head { max-width: 680px; margin-bottom: 36px; }
+    .head.center { margin-left: auto; margin-right: auto; text-align: center; }
+    .label {
+      display: inline-block; padding: 5px 12px; border-radius: 999px;
+      background: #dff6f3; color: var(--brand-ink); font-size: 0.85rem; font-weight: 700;
+    }
+    h2 { margin: 14px 0 12px; font-size: clamp(1.9rem, 3.2vw, 2.7rem); line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; }
+    .head p { margin: 0; color: var(--muted); font-size: 1.08rem; }
+
+    /* Qué ofrezco */
+    .offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; }
+    .card-media { aspect-ratio: 16 / 10; background: var(--deep); position: relative; display: grid; place-items: center; overflow: hidden; }
+    .card-media img { width: 100%; height: 100%; object-fit: cover; }
+    .card-media .pill { position: absolute; left: 14px; top: 14px; padding: 5px 11px; border-radius: 999px; background: #fff; font-size: 0.82rem; font-weight: 700; }
+    .card-body { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .card-body h3 { margin: 0; font-size: 1.3rem; line-height: 1.25; }
+    .card-body p { margin: 0; color: var(--muted); font-size: 0.99rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .tags span { padding: 4px 10px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-size: 0.82rem; font-weight: 600; color: var(--muted); }
+    .card-link { margin-top: auto; padding-top: 12px; font-weight: 700; color: var(--brand-ink); }
+    .card-link:hover { text-decoration: underline; }
+    .media-mentoria { background: linear-gradient(140deg, var(--deep), var(--deep-2)); }
+    .media-curso { background: #e9ecea; }
+    .media-st { background: #000; }
+    .card-media .st-logo { width: 88%; height: auto; object-fit: contain; }
+    .st-mark { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 1.9rem; line-height: 1.05; letter-spacing: 0.06em; text-align: center; color: #fff; }
+    .big-icon { width: 76px; height: 76px; border-radius: 24px; background: rgba(255, 255, 255, 0.1); display: grid; place-items: center; }
+    .big-icon img { width: 40px; }
+    .media-curso .big-icon { background: #fff; }
+    .media-curso .big-icon svg { width: 36px; height: 36px; stroke: var(--brand-ink); }
+
+    /* Para quién */
+    .who { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .who .item { display: flex; gap: 18px; padding: 26px; background: var(--card); border: 1px solid var(--line); border-radius: 24px; }
+    .ico { flex: none; width: 50px; height: 50px; border-radius: 16px; background: #dff6f3; display: grid; place-items: center; }
+    .ico svg { width: 24px; height: 24px; fill: none; stroke: var(--brand-ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .who h3 { margin: 2px 0 6px; font-size: 1.15rem; }
+    .who p { margin: 0; color: var(--muted); font-size: 0.99rem; }
+
+    /* Cómo funciona */
+    .steps-box { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; padding: 48px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
+    .steps-box .head { margin: 0; }
+    .steps { display: grid; gap: 14px; }
+    .step { display: grid; grid-template-columns: 52px 1fr; gap: 16px; padding: 20px; border-radius: 20px; background: var(--bg); }
+    .step .n { width: 52px; height: 52px; border-radius: 50%; background: var(--deep); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 1.1rem; }
+    .step h3 { margin: 0 0 4px; font-size: 1.08rem; }
+    .step p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+    .note { margin-top: 18px; font-size: 0.95rem; color: var(--muted); }
+
+    /* Testimonios */
+    .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .msg { margin: 0; padding: 22px; background: var(--card); border: 1px solid var(--line); border-radius: 24px; display: grid; gap: 14px; align-content: start; }
+    .msg-head { display: flex; align-items: center; gap: 12px; }
+    .msg-head b { display: block; font-size: 1rem; line-height: 1.2; }
+    .msg-head small { color: var(--muted); font-size: 0.86rem; }
+    .avatar { width: 42px; height: 42px; border-radius: 50%; background: #dff6f3; color: var(--brand-ink); display: grid; place-items: center; font-weight: 700; }
+    .bubble { margin: 0; padding: 14px 16px; border-radius: 4px 18px 18px 18px; background: var(--bg); font-size: 1rem; line-height: 1.55; }
+    .msg figcaption { color: var(--muted); font-size: 0.82rem; }
+
+    /* Reserva */
+    .book { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 0; background: var(--deep); color: #fff; border-radius: var(--radius); overflow: hidden; }
+    .book-text { padding: 56px 48px; }
+    .book-text h2 { color: #fff; }
+    .book-text p { color: rgba(255, 255, 255, 0.75); }
+    .book-text ul { margin: 22px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+    .book-text li { display: flex; gap: 10px; align-items: center; }
+    .book-text li::before { content: ""; width: 20px; height: 20px; border-radius: 50%; background: var(--brand) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2304211e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center / 12px no-repeat; flex: none; }
+    .form-alt { margin-top: 22px; font-size: 0.95rem; }
+    .form-alt a { color: var(--brand); font-weight: 700; text-decoration: underline; }
+    .book-form { background: #fff; margin: 14px; border-radius: 22px; min-height: 560px; overflow: hidden; }
+    .book-form iframe { width: 100%; height: 100%; min-height: 560px; border: 0; display: block; }
+
+    footer { margin-top: 80px; padding: 40px 0 46px; background: var(--deep); color: rgba(255, 255, 255, 0.68); font-size: 0.92rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 28px; justify-content: space-between; align-items: center; }
+    .foot-text { max-width: 620px; }
+
+    /* Móvil */
+    @media (max-width: 960px) {
+      .top nav { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: 0; }
+      .hero-text { padding: 44px 26px 10px; }
+      .hero-photo { width: min(320px, 80%); margin-top: 18px; }
+      .hero-tag { left: -18px; bottom: 40px; }
+      .stats { grid-template-columns: 1fr; }
+      .offer, .quotes { grid-template-columns: 1fr; }
+      .who { grid-template-columns: 1fr; }
+      .steps-box, .book { grid-template-columns: 1fr; }
+      .steps-box { padding: 28px 20px; gap: 24px; }
+      .book-text { padding: 40px 26px 10px; }
+      section { padding-top: 72px; }
+    }
+    @media (max-width: 520px) {
+      body { font-size: 16px; }
+      .top { padding-left: 12px; gap: 12px; }
+      .top .btn { padding: 0 16px; min-height: 42px; font-size: 0.92rem; }
+      .hero-actions .btn { width: 100%; }
+      .stat { padding: 18px; }
+      .stat b { font-size: 1.6rem; }
+      .who .item { padding: 20px; }
+    }
+  </style>
+  <style>
+    /* ===== Versión 2: fondo degradado suave y tarjetas translúcidas ===== */
+    body {
+      font-family: "Manrope", system-ui, sans-serif;
+      background:
+        radial-gradient(1200px 900px at -15% 0%, rgba(64, 210, 196, 0.55), transparent 62%),
+        radial-gradient(1100px 900px at 115% 20%, rgba(160, 170, 255, 0.50), transparent 62%),
+        radial-gradient(1000px 800px at 40% 110%, rgba(64, 210, 196, 0.30), transparent 62%),
+        #e9eff3;
+      background-attachment: fixed;
+    }
+    h1, h2, h3, .stat b { font-weight: 600; letter-spacing: -0.025em; }
+    .hero h1 { font-weight: 600; }
+
+    /* Etiquetas de sección: letras espaciadas, sin cápsula */
+    .label {
+      padding: 0;
+      background: none;
+      color: var(--ink);
+      opacity: 0.72;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+    }
+    .book-text .label { color: #fff; }
+
+    /* Tarjetas blancas translúcidas, sin bordes duros */
+    .stat, .card, .who .item, .steps-box, .msg {
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      -webkit-backdrop-filter: blur(12px);
+              backdrop-filter: blur(12px);
+      box-shadow: 0 1px 2px rgba(16, 40, 38, 0.04), 0 12px 32px rgba(16, 40, 38, 0.05);
+    }
+    .step, .bubble, .tags span { background: rgba(238, 243, 243, 0.8); }
+    .tags span { border-color: transparent; }
+    .ico, .avatar { background: rgba(64, 210, 196, 0.16); }
+
+    /* Botón oscuro como el «Continúa» de Founderz */
+    .btn-dark { background: #121615; }
+    .card-link { color: var(--ink); }
+    .card-link::after { content: ""; }
+  </style>
+  <style>
+    /* ===== Estilo elegido: negro, fondo con toque turquesa e iconos turquesa ===== */
+    :root { --deep: #101213; --deep-2: #1c1f21; }
+    .top { background: rgba(16, 18, 19, 0.96); }
+    body {
+      background:
+        radial-gradient(1100px 800px at -10% -5%, rgba(64, 210, 196, 0.38), transparent 62%),
+        radial-gradient(1000px 800px at 110% 30%, rgba(64, 210, 196, 0.16), transparent 62%),
+        #eef3f2;
+      background-attachment: fixed;
+    }
+    .ico, .avatar { background: var(--brand); color: #04211e; }
+    .ico svg { stroke: #04211e; stroke-width: 2.3; }
+  </style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#inicio" aria-label="Inicio CRZ Trader">
-      <img src="assets/solo-logo-crz.png" alt="CRZ Trader">
-      <span>CRZ Trader</span>
-    </a>
-    <nav class="nav" aria-label="Navegación principal">
+  <header class="top">
+    <a class="logo light" href="#inicio" aria-label="CRZ Trader"><img class="logo-sym" src="assets/logo-crz-simbolo.png" alt=""><span class="logo-word"><b>CRZ</b><small>TRADER</small></span></a>
+    <nav>
+      <a href="#ofrezco">Qué ofrezco</a>
       <a href="#para-quien">Para quién</a>
-      <a href="#resultado">Objetivo</a>
+      <a href="#como-funciona">Cómo funciona</a>
       <a href="analisis.html">Análisis</a>
-      <a href="#contacto">Reservar llamada</a>
     </nav>
-    <a class="nav-cta" href="#contacto">Reservar llamada</a>
+    <span class="spacer"></span>
+    <a class="btn btn-brand" href="#contacto">Reservar llamada</a>
   </header>
 
-  <main>
-    <section class="hero" id="inicio">
-      <div class="hero-copy">
-        <p class="eyebrow">Mentoría Swing Traders</p>
-        <h1>Ordena tu forma de operar y empieza a tomar decisiones con más claridad.</h1>
-        <p class="hero-text">
-          Si entras tarde, dudas demasiado, saltas de estrategia en estrategia o no sabes cómo gestionar el riesgo,
-          esta llamada te ayuda a detectar tu bloqueo principal y ordenar tu siguiente paso.
-        </p>
+  <main id="inicio">
+    <div class="hero">
+      <div class="hero-text">
+        <span class="chip"><i></i>Mentor en Swing Traders</span>
+        <h1>Opera con un plan, <em>no con impulsos.</em></h1>
+        <p>Si entras tarde, dudas demasiado o saltas de estrategia en estrategia, te ayudo a ordenar tu forma de operar y a gestionar el riesgo con criterio.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#contacto">Reservar llamada de diagnóstico</a>
-          <a class="button secondary" href="#para-quien">Ver si encaja conmigo</a>
+          <a class="btn btn-brand" href="#contacto">Reservar llamada de diagnóstico</a>
+          <a class="btn btn-line" href="analisis.html">Ver mis análisis</a>
         </div>
-        <dl class="hero-metrics" aria-label="Pilares de la mentoría">
-          <div>
-            <dt>01</dt>
-            <dd>Menos impulso</dd>
-          </div>
-          <div>
-            <dt>02</dt>
-            <dd>Más estructura</dd>
-          </div>
-          <div>
-            <dt>03</dt>
-            <dd>Riesgo controlado</dd>
-          </div>
-        </dl>
       </div>
+      <div class="hero-photo">
+        <img src="assets/cristian-retrato.jpg" alt="Cristian, mentor de swing trading">
+        <div class="hero-tag">
+          <span><b>Cristian</b><small>Mentor en Swing Traders</small></span>
+        </div>
+      </div>
+    </div>
 
-      <aside class="hero-card" aria-label="CRZ Trader">
-        <div class="portrait-frame">
-          <img class="mentor-photo" src="assets/cara-crz.jpg" alt="Mentor CRZ Trader">
-          <div class="portrait-signature">
-            <strong>Cristian</strong>
-            <span>Profesor y mentor de Swing Trading</span>
-          </div>
-        </div>
-        <div class="callout">
-          <p class="eyebrow">Diagnóstico inicial</p>
-          <h2>No necesitas más ruido. Necesitas claridad.</h2>
-          <p>
-            Cuéntame qué estás intentando conseguir, cómo operas ahora y dónde te bloqueas.
-            Con eso preparo una visión honesta de tu punto de partida.
-          </p>
-          <a class="button primary" href="#contacto">Quiero mi diagnóstico</a>
-        </div>
-      </aside>
-    </section>
+    <div class="wrap stats">
+      <div class="stat"><b>Cada semana</b><span>análisis del NASDAQ, oro y acciones</span></div>
+      <div class="stat"><b>1 a 1</b><span>diagnóstico de tu punto de partida</span></div>
+      <div class="stat"><b>Swing</b><span>un estilo compatible con tu trabajo</span></div>
+    </div>
 
-    <section class="section split" id="para-quien">
-      <div class="section-head">
-        <p class="eyebrow">Para quién es</p>
-        <h2>Para personas que quieren entender el mercado sin ir a ciegas.</h2>
-        <p>
-          No importa si estás empezando, si ya has probado por tu cuenta o si solo quieres valorar una vía
-          complementaria. La clave es entender dónde estás, qué riesgo puedes asumir y qué deberías trabajar primero.
-        </p>
-      </div>
-      <div class="cards">
-        <article>
-          <h3>Quieres iniciarte en el trading</h3>
-          <p>Quieres aprender con estructura, sin perder meses entre vídeos, conceptos sueltos y decisiones impulsivas.</p>
-        </article>
-        <article>
-          <h3>Ya operas en los mercados financieros</h3>
-          <p>Repites errores, mueves stops, dudas en las entradas o necesitas un sistema más claro para operar.</p>
-        </article>
-        <article>
-          <h3>Quieres mejorar tu educación financiera</h3>
-          <p>Quieres comprender mejor inversión, riesgo y mercados para tomar decisiones con más criterio.</p>
-        </article>
-        <article>
-          <h3>Buscas una vía complementaria</h3>
-          <p>Quieres valorar si el trading o la inversión encajan con tu vida actual, sin dedicarte a ello a tiempo completo.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section outcome" id="resultado">
-      <div class="outcome-copy">
-        <p class="eyebrow">Objetivo de la llamada</p>
-        <h2>Escuchar tu caso y ayudarte a avanzar con más claridad.</h2>
-        <p>
-          La llamada no va de prometer rentabilidad ni darte señales. Va de revisar tu situación,
-          localizar el principal bloqueo y valorar si la Mentoría Swing Traders tiene sentido para ti.
-        </p>
-      </div>
-      <div class="outcome-list">
-        <div>
-          <strong>Radiografía de tu punto de partida</strong>
-          <span>Nivel, experiencia, disponibilidad, activos, objetivos y expectativas reales.</span>
+    <section id="ofrezco">
+      <div class="wrap">
+        <div class="head">
+          <span class="label">Qué ofrezco</span>
+          <h2>Cómo puedo ayudarte</h2>
+          <p>Sigue mis análisis para entender el mercado y, cuando quieras dar el paso, trabaja conmigo en la mentoría Swing Traders.</p>
         </div>
-        <div>
-          <strong>Identificación del bloqueo principal</strong>
-          <span>Falta de plan, exceso de riesgo, entradas tarde, inseguridad o saturación de información.</span>
-        </div>
-        <div>
-          <strong>Siguiente paso con criterio</strong>
-          <span>Una ruta clara para saber qué deberías ordenar primero antes de seguir operando.</span>
+        <div class="offer">
+          <article class="card">
+            <div class="card-media"><img src="assets/poster-analisis-nasdaq-definitivo-2026-07-17.png?v=logo-cover-2" alt="Análisis del NASDAQ"><span class="pill">Diarios y semanales</span></div>
+            <div class="card-body">
+              <h3>Análisis de mercado</h3>
+              <p>Mi lectura del NASDAQ, el oro y las acciones que sigo: zonas, escenarios y qué vigilo.</p>
+              <div class="tags"><span>NAS100</span><span>GOLD</span><span>Acciones</span></div>
+              <a class="card-link" href="analisis.html">Ver análisis →</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media media-st"><span class="pill">Soy mentor del programa</span><img class="st-logo" src="assets/swingtraders-logo.png" alt="Swing Traders"></div>
+            <div class="card-body">
+              <h3>Mentoría Swing Traders</h3>
+              <p>El programa de mentoría en el que acompaño a los alumnos: plan de trading, gestión del riesgo y entradas sobre sus propias operaciones.</p>
+              <div class="tags"><span>Acompañamiento</span><span>Plan de trading</span><span>Riesgo</span></div>
+              <a class="card-link" href="#contacto">Ver si encaja contigo →</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section contact" id="contacto">
-      <div class="contact-copy">
-        <p class="eyebrow">Reserva tu llamada</p>
-        <h2>Rellena el formulario y preparo tu diagnóstico.</h2>
-        <p>
-          Te llevará menos de dos minutos. Tus respuestas me ayudan a entender tu caso antes de hablar
-          y a que la llamada sea más directa y útil.
-        </p>
-      </div>
-      <div class="lead-card">
-        <p class="eyebrow">Google Forms</p>
-        <h3>Diagnóstico inicial - Mentoría Swing Traders</h3>
-        <p>
-          Deja tus datos, tu nivel actual y el principal problema que quieres resolver en trading,
-          inversión o educación financiera.
-        </p>
-        <div class="form-embed" aria-label="Formulario de diagnóstico integrado">
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSewszIMYz7uvGgeJPqI4V2aH5XkuxcBAu2oBAFDwTTRR9AygA/viewform?embedded=true"
-            title="Formulario de diagnóstico CRZ Trader"
-            loading="lazy"
-          >
-            Cargando formulario...
-          </iframe>
+    <section id="para-quien">
+      <div class="wrap">
+        <div class="head">
+          <span class="label">Para quién es</span>
+          <h2>Para quien quiere entender el mercado sin ir a ciegas</h2>
+          <p>No importa si empiezas o si ya operas. La clave es saber dónde estás, qué riesgo puedes asumir y qué trabajar primero.</p>
         </div>
-        <p class="form-note">
-          El trading implica riesgo. Esta llamada es informativa y educativa, no asesoramiento financiero.
-          Si el formulario no carga, <a href="https://docs.google.com/forms/d/e/1FAIpQLSewszIMYz7uvGgeJPqI4V2aH5XkuxcBAu2oBAFDwTTRR9AygA/viewform?usp=header" target="_blank" rel="noopener noreferrer">abre la versión externa aquí</a>.
-        </p>
+        <div class="who">
+          <div class="item"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></span><div><h3>Quieres iniciarte en el trading</h3><p>Aprender con estructura, sin perder meses entre vídeos sueltos y decisiones impulsivas.</p></div></div>
+          <div class="item"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span><div><h3>Ya operas, pero repites errores</h3><p>Mueves stops, dudas en las entradas o necesitas un sistema más claro para operar.</p></div></div>
+          <div class="item"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><div><h3>Quieres mejorar tu educación financiera</h3><p>Entender inversión, riesgo y mercados para decidir con más criterio.</p></div></div>
+          <div class="item"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><h3>Buscas una vía complementaria</h3><p>Valorar si el trading encaja con tu vida, sin dedicarte a ello a tiempo completo.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona">
+      <div class="wrap">
+        <div class="steps-box">
+          <div class="head">
+            <span class="label">La llamada de diagnóstico</span>
+            <h2>Escucho tu caso y te digo, con honestidad, por dónde empezar</h2>
+            <p>No va de prometer rentabilidad ni de darte señales. Va de revisar tu situación y ver si la mentoría Swing Traders tiene sentido para ti.</p>
+            <a class="btn btn-dark" href="#contacto" style="margin-top:24px">Reservar mi llamada</a>
+          </div>
+          <div class="steps">
+            <div class="step"><span class="n">1</span><div><h3>Radiografía de tu punto de partida</h3><p>Nivel, experiencia, disponibilidad, activos, objetivos y expectativas reales.</p></div></div>
+            <div class="step"><span class="n">2</span><div><h3>Tu bloqueo principal</h3><p>Falta de plan, exceso de riesgo, entradas tarde, inseguridad o demasiada información.</p></div></div>
+            <div class="step"><span class="n">3</span><div><h3>Tu siguiente paso</h3><p>Una ruta clara de qué ordenar primero antes de seguir operando.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mensajes de alumnos: oculto hasta tener mensajes reales. Para mostrarlo, quita «hidden». -->
+    <section id="alumnos" hidden>
+      <div class="wrap">
+        <div class="head center">
+          <span class="label">Alumnos</span>
+          <h2>Lo que me escriben los alumnos</h2>
+          <p>Mensajes reales, compartidos con su permiso.</p>
+        </div>
+        <div class="quotes">
+          <figure class="msg">
+            <div class="msg-head"><span class="avatar">A</span><span><b>Nombre del alumno</b><small>Alumno de Swing Traders</small></span></div>
+            <blockquote class="bubble">Aquí va el mensaje real de un alumno, copiado tal cual de Instagram o WhatsApp.</blockquote>
+            <figcaption>vía Instagram</figcaption>
+          </figure>
+          <figure class="msg">
+            <div class="msg-head"><span class="avatar">B</span><span><b>Nombre del alumno</b><small>Alumno de Swing Traders</small></span></div>
+            <blockquote class="bubble">Mejor si cuenta algo concreto: qué hacía antes, qué ha cambiado y cómo se siente ahora.</blockquote>
+            <figcaption>vía WhatsApp</figcaption>
+          </figure>
+          <figure class="msg">
+            <div class="msg-head"><span class="avatar">C</span><span><b>Nombre del alumno</b><small>Alumno de Swing Traders</small></span></div>
+            <blockquote class="bubble">Siempre con su permiso. Puede ir con su nombre o solo con la inicial.</blockquote>
+            <figcaption>vía Instagram</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="wrap">
+        <div class="book">
+          <div class="book-text">
+            <span class="label">Reserva tu llamada</span>
+            <h2>Rellena el formulario y preparo tu diagnóstico</h2>
+            <p>Te llevará menos de dos minutos. Con tus respuestas llego a la llamada sabiendo tu caso.</p>
+            <ul>
+              <li>Tu nivel y cómo operas ahora</li>
+              <li>Dónde te bloqueas</li>
+              <li>Qué quieres conseguir</li>
+            </ul>
+            <p class="form-alt">¿No te carga el formulario? <a href="https://docs.google.com/forms/d/e/1FAIpQLSewszIMYz7uvGgeJPqI4V2aH5XkuxcBAu2oBAFDwTTRR9AygA/viewform?usp=header" target="_blank" rel="noopener noreferrer">Ábrelo aquí</a>.</p>
+          </div>
+          <div class="book-form">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSewszIMYz7uvGgeJPqI4V2aH5XkuxcBAu2oBAFDwTTRR9AygA/viewform?embedded=true" title="Diagnóstico inicial" loading="lazy">Cargando…</iframe>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>CRZ Trader - Mentoría Swing Traders.</p>
-    <p>Contenido educativo. El trading implica riesgo.</p>
+  <footer>
+    <div class="wrap">
+      <a class="logo light" href="#inicio" aria-label="CRZ Trader"><img class="logo-sym" src="assets/logo-crz-simbolo.png" alt=""><span class="logo-word"><b>CRZ</b><small>TRADER</small></span></a>
+      <span class="foot-text">El trading implica riesgo. Contenido educativo, no asesoramiento financiero. Colaboro como mentor con el programa Swing Traders.</span>
+    </div>
   </footer>
+  <script src="script.js?v=landing-clara-2026-11-18"></script>
 </body>
 </html>
