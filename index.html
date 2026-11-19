@@ -144,7 +144,7 @@
     .head p { margin: 0; color: var(--muted); font-size: 1.08rem; }
 
     /* Qué ofrezco */
-    .offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .offer { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .card { background: var(--card); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; }
     .card-media { aspect-ratio: 16 / 9; background: var(--deep); position: relative; display: grid; place-items: center; overflow: hidden; }
     .card-media img { width: 100%; height: 100%; object-fit: cover; }
@@ -154,11 +154,29 @@
     .card-body p { margin: 0; color: var(--muted); font-size: 0.99rem; }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
     .tags span { padding: 4px 10px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-size: 0.82rem; font-weight: 600; color: var(--muted); }
+    .checks { margin: 2px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+    .checks li { position: relative; padding-left: 28px; color: var(--muted); font-size: 0.96rem; line-height: 1.45; }
+    .checks li b { color: var(--ink); font-weight: 600; }
+    .checks li::before {
+      content: ""; position: absolute; left: 0; top: 2px; width: 18px; height: 18px; border-radius: 6px;
+      background: var(--brand) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2304211e' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center / 12px no-repeat;
+    }
     .card-link { margin-top: auto; padding-top: 12px; font-weight: 700; color: var(--brand-ink); }
     .card-link:hover { text-decoration: underline; }
     .media-mentoria { background: linear-gradient(140deg, var(--deep), var(--deep-2)); }
     .media-curso { background: #e9ecea; }
-    .media-st { background: #000; }
+    .media-st {
+      background:
+        radial-gradient(55% 34% at 63% 64%, rgba(225, 29, 38, 0.50), transparent 70%),
+        radial-gradient(90% 55% at 55% 100%, rgba(170, 10, 20, 0.45), transparent 75%),
+        #000;
+    }
+    .media-st::after {
+      content: ""; position: absolute; left: 39%; right: 14%; bottom: 40%; height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, transparent, #ff2a35 20%, #ff2a35 80%, transparent);
+      box-shadow: 0 0 14px 3px rgba(255, 42, 53, 0.6);
+    }
+    .card-media .st-logo { position: relative; z-index: 1; mix-blend-mode: lighten; }
     .card-media .st-logo { width: 88%; height: auto; object-fit: contain; }
     .st-mark { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 1.9rem; line-height: 1.05; letter-spacing: 0.06em; text-align: center; color: #fff; }
     .big-icon { width: 76px; height: 76px; border-radius: 24px; background: rgba(255, 255, 255, 0.1); display: grid; place-items: center; }
@@ -338,11 +356,11 @@
         <div class="head">
           <span class="label">Qué ofrezco</span>
           <h2>Cómo puedo ayudarte</h2>
-          <p>Sigue mis análisis para entender el mercado y, cuando quieras dar el paso, trabaja conmigo en la mentoría Swing Traders.</p>
+          <p>Sigue mis análisis para entender el mercado y, cuando quieras dar el paso, trabaja conmigo en la mentoría Swing Traders: trading activo e inversión con método.</p>
         </div>
         <div class="offer">
           <article class="card">
-            <div class="card-media"><img src="assets/poster-analisis-nasdaq-2026-07-17-v2.png" alt="Análisis del NASDAQ"><span class="pill">Diarios y semanales</span></div>
+            <div class="card-media"><img src="assets/poster-analisis-nasdaq-2026-07-17-v4.png" alt="Análisis del NASDAQ"><span class="pill">Diarios y semanales</span></div>
             <div class="card-body">
               <h3>Análisis de mercado</h3>
               <p>Mi lectura del NASDAQ, el oro y las acciones que sigo: zonas, escenarios y qué vigilo.</p>
@@ -356,6 +374,19 @@
               <h3>Mentoría Swing Traders</h3>
               <p>El programa de mentoría en el que acompaño a los alumnos: plan de trading, gestión del riesgo y entradas sobre sus propias operaciones.</p>
               <div class="tags"><span>Acompañamiento</span><span>Plan de trading</span><span>Riesgo</span></div>
+              <a class="card-link" href="#contacto">Ver si encaja contigo →</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media"><img src="assets/invertir-con-metodo.png" alt="Gráfico de sectores y velas de trading"><span class="pill">Dentro de la mentoría</span></div>
+            <div class="card-body">
+              <h3>Invierte y opera con método</h3>
+              <p>Aprende a combinar el trading activo con la inversión, según tu tiempo y tu perfil de riesgo.</p>
+              <ul class="checks">
+                <li><b>Trading activo en índices:</b> NASDAQ y S&amp;P 500</li>
+                <li><b>Inversión a corto y largo plazo:</b> cuándo mantener y cuándo salir</li>
+                <li><b>Diversificación por sectores:</b> no depender de un solo activo</li>
+              </ul>
               <a class="card-link" href="#contacto">Ver si encaja contigo →</a>
             </div>
           </article>
