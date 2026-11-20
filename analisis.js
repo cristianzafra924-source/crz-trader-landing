@@ -101,6 +101,23 @@
     return pill;
   };
 
+  // Enlace directo a un análisis concreto: analisis.html#<id>
+  const enlaceDe = (a) => `${location.origin}${location.pathname}#${encodeURIComponent(a.id)}`;
+
+  const shareLink = (a) => {
+    const b = el("button", "share-link", "🔗 Copiar enlace de este análisis");
+    b.type = "button";
+    b.style.cssText = "margin-top:14px;border:1px solid rgba(0,0,0,.12);background:transparent;border-radius:999px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer;";
+    b.onclick = async () => {
+      const url = enlaceDe(a);
+      try { await navigator.clipboard.writeText(url); b.textContent = "✔ Enlace copiado"; }
+      catch { window.prompt("Copia este enlace:", url); }
+      setTimeout(() => { b.textContent = "🔗 Copiar enlace de este análisis"; }, 2500);
+      track("analysis_share", a);
+    };
+    return b;
+  };
+
   const featured = (a) => {
     const card = el("article", "analysis-card video-stage");
     card.dataset.videoId = a.id;
@@ -109,7 +126,7 @@
     const copy = el("div", "featured-video-copy");
     copy.append(el("p", "eyebrow", a.id === items[0]?.id ? "Último análisis" : "Análisis"), el("h3", "", a.titulo));
     if (a.resumen) copy.append(el("p", "", a.resumen));
-    copy.append(meta(a), feedback(a));
+    copy.append(meta(a), feedback(a), shareLink(a));
     content.append(copy);
     card.append(media(a), content);
     return card;
@@ -126,6 +143,7 @@
     b.append(img, txt);
     b.onclick = () => {
       destacadoId = a.id;
+      history.replaceState(null, "", `#${encodeURIComponent(a.id)}`);
       render();
       library.scrollIntoView({ behavior: "smooth", block: "start" });
     };
@@ -187,13 +205,30 @@
     a && typeof a.id === "string" && typeof a.titulo === "string" &&
     ((typeof a.youtube === "string" && /^[\w-]{11}$/.test(a.youtube)) || typeof a.video === "string");
 
+  function abrirDesdeEnlace(pintar = true) {
+    const pedido = decodeURIComponent(location.hash.slice(1));
+    const a = items.find((x) => x.id === pedido);
+    if (!a) return;
+    destacadoId = a.id;
+    filtro = "todos";
+    if (pintar) {
+      render();
+      library.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+  window.addEventListener("hashchange", () => abrirDesdeEnlace(true));
+
   fetch(`analisis.json?t=${Date.now()}`, { cache: "no-store" })
     .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
     .then((data) => {
       items = (Array.isArray(data.analisis) ? data.analisis : [])
         .filter(valid)
         .sort((a, b) => String(b.fecha).localeCompare(String(a.fecha)));
-      if (items.length) render();
+      if (items.length) {
+        abrirDesdeEnlace(false);
+        render();
+        if (destacadoId) setTimeout(() => library.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+      }
     })
     .catch(() => {});
 })();
