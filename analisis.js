@@ -3,6 +3,7 @@
 // el contenido que ya viene escrito en analisis.html.
 (() => {
   const library = document.querySelector("#analysis-library");
+  if (library) library.style.scrollMarginTop = "96px"; // que el menú fijo no tape el vídeo al llegar por enlace
   if (!library) return;
 
   const MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
