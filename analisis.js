@@ -24,7 +24,7 @@
   };
 
   const thumb = (a) =>
-    a.youtube ? `https://i.ytimg.com/vi/${a.youtube}/hqdefault.jpg` : a.poster || "";
+    a.poster || (a.youtube ? `https://i.ytimg.com/vi/${a.youtube}/hqdefault.jpg` : "");
 
   const track = (name, a, extra = {}) => {
     if (typeof sendCrzEvent === "function") {
